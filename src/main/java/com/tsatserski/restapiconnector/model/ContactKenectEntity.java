@@ -2,7 +2,7 @@ package com.tsatserski.restapiconnector.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ContactEntity {
+public class ContactKenectEntity {
     private Long id;
     private String name;
     private String email;
@@ -11,7 +11,7 @@ public class ContactEntity {
     @JsonProperty("updated_at")
     private String updatedAt;
 
-    public ContactEntity() {
+    public ContactKenectEntity() {
     }
 
     public Long getId() {
