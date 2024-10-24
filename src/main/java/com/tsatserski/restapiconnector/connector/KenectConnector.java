@@ -47,6 +47,9 @@ public class KenectConnector {
                     ContactKenectEntityWrapper.class
             );
 
+            if (responseEntity == null) {
+                break;
+            }
             ContactKenectEntityWrapper externalContacts = responseEntity.getBody();
             if (externalContacts != null && externalContacts.getContacts() != null && externalContacts.getContacts().size() > 0) {
                 for (ContactKenectEntity externalContact : externalContacts.getContacts()) {
