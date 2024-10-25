@@ -1,7 +1,12 @@
 package com.tsatserski.restapiconnector;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
 
 import com.tsatserski.restapiconnector.connector.KenectConnector;
 import com.tsatserski.restapiconnector.model.ContactItem;
@@ -34,22 +39,19 @@ public class KenectConnectorTest {
 
     @BeforeEach
     void setup() {
-        // Reset all mocks before each test
         reset(restTemplate);
     }
 
     @Test
     void testSuccess() {
-        // Mock response from the external service
         ContactKenectEntity contact1 = new ContactKenectEntity(1L, "jmadsen");
         ContactKenectEntity contact2 = new ContactKenectEntity(2L, "Jalisa Quigley");
 
         ContactKenectEntityWrapper firstPage = new ContactKenectEntityWrapper();
         firstPage.setContacts(Arrays.asList(contact1, contact2));
 
-        ContactKenectEntityWrapper secondPage = new ContactKenectEntityWrapper();  // No contacts on the second page
+        ContactKenectEntityWrapper secondPage = new ContactKenectEntityWrapper();
 
-        // Mock the RestTemplate response
         when(restTemplate.exchange(
                 eq(url + "?page=1"),
                 eq(HttpMethod.GET),
